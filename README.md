@@ -1,77 +1,101 @@
-# Fraud ML Engineering Platform
+# 🚨 Fraud ML Engineering Platform
 
-Plataforma end-to-end para detecção de fraude em transações com cartão de crédito, desenvolvida com foco em Machine Learning Engineering, MLOps e arquitetura escalável em AWS.
+<p align="center">
+  <b>Plataforma end-to-end de Machine Learning para detecção de fraude bancária</b><br>
+  <i>Do dado bruto até API escalável e dashboard interativo</i>
+</p>
 
-Este projeto foi criado para demonstrar a construção de uma solução aplicada ao contexto financeiro, unindo engenharia de dados, machine learning, serving de modelos e visualização interativa de resultados.
-
----
-
-## Objetivo do Projeto
-
-Desenvolver um portfolio técnico que simule uma solução real de detecção de fraude, cobrindo desde a preparação dos dados até a disponibilização do modelo via API e dashboard.
-
-O foco não é apenas treinar um modelo, mas estruturar um projeto com organização, reprodutibilidade, escalabilidade e visão de produto de dados.
-
----
-
-## Problema de Negócio
-
-Fraudes em transações financeiras representam um desafio crítico para instituições bancárias. Em cenários reais, o problema envolve:
-
-- grande volume de transações
-- classes altamente desbalanceadas
-- necessidade de detectar fraudes com rapidez
-- equilíbrio entre redução de perdas financeiras e experiência do cliente
-- monitoramento contínuo da performance do modelo
-
-Neste projeto, o objetivo é construir uma solução de classificação para apoio à detecção de fraude em cartão de crédito, utilizando o dataset `creditcard.csv`.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue">
+  <img src="https://img.shields.io/badge/Machine%20Learning-Random%20Forest-green">
+  <img src="https://img.shields.io/badge/API-FastAPI-009688">
+  <img src="https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B">
+  <img src="https://img.shields.io/badge/Container-Docker-blueviolet">
+  <img src="https://img.shields.io/badge/Status-Production%20Ready-success">
+</p>
 
 ---
 
-## Stack Tecnológica
+## 🎯 Sobre o Projeto
 
-### Linguagens e bibliotecas
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- XGBoost
-- Matplotlib / Seaborn
+Este projeto simula uma solução real de **detecção de fraude em transações financeiras**, com foco em:
 
-### APIs e aplicações
-- FastAPI
-- Streamlit
+- 🧠 Machine Learning aplicado
+- ⚙️ Engenharia de Machine Learning (MLE)
+- 🔁 Pipeline end-to-end
+- ☁️ Estrutura pronta para cloud (AWS)
 
-### Engenharia e MLOps
-- Git / GitHub
-- Docker
-- Estrutura modular em `src`
-- Notebooks para exploração
-- Ambiente virtual com `venv`
-
-### Cloud e arquitetura
-- AWS S3
-- AWS Glue
-- AWS Athena
-- AWS Step Functions
-- Fundamentos de SageMaker
-- Terraform (em evolução)
+A proposta vai além de um modelo:  
+👉 entrega uma **plataforma completa**, organizada como um projeto de produção.
 
 ---
 
-## Estrutura do Projeto
+## 💼 Problema de Negócio
 
-```bash
-fraud-ml-engineering-platform/
-│
-├── dashboard/        # Aplicação interativa para visualização de métricas e simulação de predições
-├── data/             # Dados brutos e processados
-├── infrastructure/   # Arquitetura cloud, deploy e componentes de infraestrutura
-├── notebooks/        # Análises exploratórias e experimentos iniciais
-├── src/              # Código principal do projeto (pipeline, treino, avaliação, inferência)
-│
-├── .dockerignore
-├── .gitignore
-├── Dockerfile
-├── README.md
-└── requirements.txt
+Fraudes financeiras são um dos maiores desafios para bancos.
+
+O problema envolve:
+
+- 📈 Alto volume de transações  
+- ⚖️ Dataset extremamente desbalanceado  
+- ⚡ Necessidade de resposta em tempo real  
+- 💸 Redução de perdas financeiras  
+- 👤 Preservação da experiência do cliente  
+
+> 🎯 Objetivo: identificar transações fraudulentas com alta precisão e recall.
+
+---
+
+## 📊 Dataset
+
+📌 **Credit Card Fraud Detection (Kaggle)**
+
+| Feature | Descrição |
+|--------|----------|
+| `Time` | Segundos desde a primeira transação |
+| `Amount` | Valor da transação |
+| `V1 - V28` | Features transformadas via PCA |
+| `Class` | Target (0 = normal, 1 = fraude) |
+
+---
+
+## 🧠 Modelagem
+
+- 🌲 Random Forest (modelo principal)
+- ⚖️ Tratamento de desbalanceamento
+- 📏 Métricas utilizadas:
+  - PR-AUC (principal)
+  - Recall (fraudes)
+  - Precision
+  - ROC-AUC (comparativo)
+
+---
+
+## 🏗️ Arquitetura do Projeto
+
+### 🔄 Pipeline
+
+```text
+Raw Data → Preprocessing → Feature Engineering → Model Training → Model Serving → Dashboard
+        ┌──────────────────────────────┐
+        │        Dataset Kaggle        │
+        └──────────────┬───────────────┘
+                       ▼
+        ┌──────────────────────────────┐
+        │      Pré-processamento       │
+        └──────────────┬───────────────┘
+                       ▼
+        ┌──────────────────────────────┐
+        │      Treinamento Modelo      │
+        └──────────────┬───────────────┘
+                       ▼
+        ┌──────────────────────────────┐
+        │     Artefatos (modelos)      │
+        └───────┬───────────┬──────────┘
+                ▼           ▼
+        ┌────────────┐ ┌──────────────┐
+        │  FastAPI   │ │  Streamlit   │
+        └─────┬──────┘ └──────┬───────┘
+              └──────┬────────┘
+                     ▼
+              👤 Usuário final
