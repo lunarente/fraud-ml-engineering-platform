@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+
+  api:
+    build: .
+    container_name: fraud_api
+    ports:
+      - "8000:8000"
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: dashboard/Dockerfile
+    container_name: fraud_dashboard
+    ports:
+      - "8501:8501"
+    depends_on:
+      - api
